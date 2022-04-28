@@ -7,7 +7,6 @@ function Main() {
     const [currentSection, setCurrentSection] = useState(<HealthData/>);
     function handleClick(section) {
         setCurrentSection(section);
-        console.log(section);
     } 
 
     const sections = [
@@ -26,8 +25,9 @@ function Main() {
                 
                 
             </div>
+
             {currentSection}
-            
+
         </div>
     );
 }
