@@ -6,6 +6,7 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
+    Outlet,
     Navigate,
     useNavigate,
 } from 'react-router-dom';
@@ -13,7 +14,16 @@ import {
 export default function Main() {
     return (
         <Router>
-            <Contents />
+            <Routes>
+                <Route path='/' element={<Contents />}>
+                    <Route path='HealthData' element={<HealthData />}/>
+                    <Route path='Recommendations' element={<Recommendations />}/>
+                    <Route path='Statistics' element={<Statistics />} />
+                    <Route path='PillIntake' element={<PillIntake />} />
+                    <Route index element={<Navigate to='/HealthData' replace />} />
+                    <Route path='*' element={<NoMatch />} />
+                </Route>
+            </Routes>
         </Router>
     )
 }
@@ -35,20 +45,13 @@ function Contents() {
 
     return (
             <div className='Main'>
-                <h1>Hello World</h1>
                 <nav>
                     {sections.map(section => (
                         <button onClick={() => navigate(section.path)}>{section.name}</button>
                     ))}
                 </nav>
             
-                <Routes>
-                    <Route path='/HealthData' element={<HealthData />}/>
-                    <Route path='/Recommendations' element={<Recommendations />}/>
-                    <Route path='/Statistics' element={<Statistics />} />
-                    <Route path='/PillIntake' element={<PillIntake />} />
-                    <Route path='*' element={<Navigate to='/HealthData' replace />} />
-                </Routes>
+                <Outlet />
             </div>
     );
 }
@@ -64,5 +67,13 @@ function PillIntake() {
         <h2>
             Pill Intake
         </h2>
+    )
+}
+
+function NoMatch() {
+    return (
+        <div className='center'>
+            <img src='internet_404_page_not_found.png' alt='Nothing to see here' />
+        </div>
     )
 }

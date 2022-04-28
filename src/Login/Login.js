@@ -5,7 +5,7 @@ function Login() {
     const [password, setPassword] = useState()
 
     function handleSubmit() {
-        
+
     }
     return (
         <div className="Login">
@@ -15,10 +15,12 @@ function Login() {
 
             <div className="container">
                 <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" onChange={e => setUsername(e.target.value)} required/>
+                <input type="text" placeholder="Enter Username" name='uname' 
+                    onChange={e => setUsername(e.target.value)} required/>
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" onChange={e => setUsername(e.target.value)} required/>
+                <input type="password" placeholder="Enter Password" name='psw'
+                    onChange={e => setUsername(e.target.value)} required/>
                     
                 <button type="submit">LOG IN</button>
                 <label>
