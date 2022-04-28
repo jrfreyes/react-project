@@ -3,14 +3,25 @@ import React, { useState } from 'react';
 
 function HealthData() {
     const [currentPage, setCurrentPage] = useState("BMI");
+    function switchPage(page) {
+        setCurrentPage(page)
+        console.log(currentPage)
+    }
+
+    const pages = [
+        'Body Mass Index',
+        'Lean Body Mass',
+        'Heart Rate',
+        'Blood Pressure',
+        'Sleep Pattern',
+    ]
     return (
         <div className="HealthData">
             <div className="HealthDataOptions">
-                <button>Body Mass Index</button>
-                <button>Lean Body Mass</button>
-                <button>Heart Rate</button>
-                <button>Blood Pressure</button>
-                <button>Sleep Pattern</button>
+                {pages.map((page) => (
+                    <button onClick={() => switchPage(page)}>{page}</button>
+                ))}
+                
             </div>
             <div className="HealthDataContent">
                 <center>
