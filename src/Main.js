@@ -1,35 +1,68 @@
 import './Main.css';
 import HealthData from './HealthData';
 import Recommendations from './Recommendations';
-import React, { useState } from 'react';
+import React from 'react';
+import { 
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+    useNavigate,
+} from 'react-router-dom';
 
-function Main() {
-    const [currentSection, setCurrentSection] = useState(<HealthData/>);
-    function handleClick(section) {
-        setCurrentSection(section);
-    } 
+export default function Main() {
+    return (
+        <Router>
+            <Contents />
+        </Router>
+    )
+}
+
+function Contents() {
+    
+    let navigate = useNavigate();
+
+    function handleClick(path) {
+        navigate(path)
+    }
 
     const sections = [
-        {'name': 'Health Data', 'component': <HealthData/>},
-        {'name': 'Recommendations', 'component': <Recommendations/>},
-        {'name': 'Statistics', 'component': 'Statistics'},
-        {'name': 'Pill Intake', 'component': 'PillIntake'},
+        {'name': 'Health Data', 'path': '/HealthData'},
+        {'name': 'Recommendations', 'path': '/Recommendations'},
+        {'name': 'Statistics', 'path': '/Statistics'},
+        {'name': 'Pill Intake', 'path': '/PillIntake'},
     ]
 
     return (
-        <div className="Main">
-            <div className="SideBar">
-                {sections.map((section) => (
-                    <button onClick={() => handleClick(section.component)}>{section.name}</button>
-                ))}
-                
-                
+            <div className='Main'>
+                <h1>Hello World</h1>
+                <nav>
+                    {sections.map(section => (
+                        <button onClick={() => navigate(section.path)}>{section.name}</button>
+                    ))}
+                </nav>
+            
+                <Routes>
+                    <Route path='/HealthData' element={<HealthData />}/>
+                    <Route path='/Recommendations' element={<Recommendations />}/>
+                    <Route path='/Statistics' element={<Statistics />} />
+                    <Route path='/PillIntake' element={<PillIntake />} />
+                    <Route path='*' element={<Navigate to='/HealthData' replace />} />
+                </Routes>
             </div>
-
-            {currentSection}
-
-        </div>
     );
 }
 
-export default Main;
+function Statistics() {
+    return (
+        <h2>Statistics</h2>
+    )
+}
+
+function PillIntake() {
+    return (
+        <h2>
+            Pill Intake
+        </h2>
+    )
+}
