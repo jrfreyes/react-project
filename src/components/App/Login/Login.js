@@ -9,7 +9,8 @@ export default function Login( {setToken} ) {
     async function handleSubmit(e) {
         e.preventDefault();
         console.log(username+password);
-        setToken({token: 'Hello'});
+        // for now maybe just use LocalStorage as database analogue
+        setToken({token: 'Hello'}); // Token should be taken from a server ideally
     }
     return (
         <div className="Login">
@@ -32,7 +33,7 @@ export default function Login( {setToken} ) {
                 </label>
             </div>
 
-            <div className="container">
+            <div className="container grey">
                 
             </div>
             </form>

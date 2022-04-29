@@ -78,7 +78,7 @@ function PillIntake() {
 function NoMatch() {
     return (
         <div className='center'>
-            <img src='internet_404_page_not_found.png' alt='Nothing to see here' />
+            <img src='/internet_404_page_not_found.png' alt='Nothing to see here' />
         </div>
     )
 }
