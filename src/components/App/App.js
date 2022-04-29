@@ -49,7 +49,7 @@ function Contents() {
     ]
 
     return (
-            <div className='Main'>
+            <div className='App'>
                 <nav>
                     {sections.map(section => (
                         <button onClick={() => navigate(section.path)}>{section.name}</button>
