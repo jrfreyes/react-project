@@ -1,4 +1,4 @@
-import './Main.css';
+import './App.css';
 import Login from './Login';
 import HealthData from './HealthData';
 import Recommendations from './Recommendations';
@@ -12,7 +12,7 @@ import {
     useNavigate,
 } from 'react-router-dom';
 
-export default function Main() {
+export default function App() {
     const {token, setToken} = useToken();
 
     if(!token) {
