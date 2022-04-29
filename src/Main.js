@@ -1,9 +1,10 @@
 import './Main.css';
+import Login from './Login';
 import HealthData from './HealthData';
 import Recommendations from './Recommendations';
-import React from 'react';
+import useToken from './useToken';
+import React, { useState } from 'react';
 import { 
-    BrowserRouter as Router,
     Routes,
     Route,
     Outlet,
@@ -12,19 +13,23 @@ import {
 } from 'react-router-dom';
 
 export default function Main() {
+    const {token, setToken} = useToken();
+
+    if(!token) {
+        return <Login setToken={setToken} />
+    }
+
     return (
-        <Router>
-            <Routes>
-                <Route path='/' element={<Contents />}>
-                    <Route path='HealthData' element={<HealthData />}/>
-                    <Route path='Recommendations' element={<Recommendations />}/>
-                    <Route path='Statistics' element={<Statistics />} />
-                    <Route path='PillIntake' element={<PillIntake />} />
-                    <Route index element={<Navigate to='/HealthData' replace />} />
-                    <Route path='*' element={<NoMatch />} />
-                </Route>
-            </Routes>
-        </Router>
+        <Routes>
+            <Route path='/' element={<Contents />}>
+                <Route path='HealthData' element={<HealthData />}/>
+                <Route path='Recommendations' element={<Recommendations />}/>
+                <Route path='Statistics' element={<Statistics />} />
+                <Route path='PillIntake' element={<PillIntake />} />
+                <Route index element={<Navigate to='/HealthData' replace />} />
+                <Route path='*' element={<NoMatch />} />
+            </Route>
+        </Routes>
     )
 }
 
