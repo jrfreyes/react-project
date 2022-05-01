@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import PropTypes from 'prop-types';
-import './Login.css'
+import PropTypes from 'prop-types'
 
-export default function Login( {setToken, setUser} ) {
+export default function SignUp( {setToken, setUser} ) {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState()
     const navigate = useNavigate();
@@ -17,8 +16,8 @@ export default function Login( {setToken, setUser} ) {
         navigate('/');
     }
     return (
-        <div className="Login">
-            <h2>Login</h2>
+        <div className="SignUp">
+            <h2>SignUp</h2>
 
             <form onSubmit={handleSubmit}>
 
@@ -31,9 +30,9 @@ export default function Login( {setToken, setUser} ) {
                 <input type="password" placeholder="Enter Password"
                     onChange={e => setPassword(e.target.value)} required/>
                     
-                <button type="submit">LOG IN</button>
+                <button type="submit">SIGN UP</button>
                 <label>
-                    <span className="acc">Need an account? <Link to='/SignUp'>SIGN UP</Link></span>
+                    <span className="acc">Already a user? <Link to='/Login'>LOGIN</Link></span>
                 </label>
             </div>
 
@@ -45,7 +44,7 @@ export default function Login( {setToken, setUser} ) {
     )
 }
 
-Login.propTypes = {
+SignUp.propTypes = {
     setToken: PropTypes.func.isRequired,
-    setUser: PropTypes.func.isRequired
+    setUsername: PropTypes.func.isRequired
 }
