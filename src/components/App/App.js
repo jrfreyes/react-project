@@ -1,6 +1,7 @@
 import './App.css';
 import Login from './Login';
 import HealthData from './HealthData';
+import Statistics from './Statistics';
 import Recommendations from './Recommendations';
 import SignUp from './SignUp/SignUp';
 import useToken from './useToken';
@@ -113,11 +114,6 @@ LogOut.propTypes = {
     setUser: PropTypes.func.isRequired
 }
 
-function Statistics() {
-    return (
-        <HealthData />
-    )
-}
 
 function PillIntake() {
     return (
