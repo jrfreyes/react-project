@@ -1,0 +1,15 @@
+.StatisticsOptions {
+    width: 20%;
+    position: fixed;
+
+}
+
+.StatisticsOptions button{
+    width: 100%;
+    height: 50px;
+    display: block;
+}
+
+.StatisticsContent {
+    margin-left: 25%;
+}
