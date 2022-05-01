@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PropTypes from 'prop-types';
 
 export default function Input() {
     const navigate = useNavigate();
@@ -9,15 +8,18 @@ export default function Input() {
     const [bmi, setBMI] = useState(0);
     const [stat, setStat] = useState('')
 
+    // Update BMI whenever weight or height changes
     useEffect(() => {
         setBMI(Math.round(weight/((height/100)**2) * 100)/100);
         console.log(bmi);
     }, [weight, height])
 
+    // Update status as soon as bmi is updated
     useEffect(() => {
         setStat(calcStat());
         console.log(stat);
     }, [bmi])
+
     async function handleSubmit(e) {
         e.preventDefault();
         navigate('/HealthData');
@@ -25,7 +27,6 @@ export default function Input() {
 
 
     const calcStat = () => {
-    
         if (bmi > 0) {
             if (bmi < 18.5) {
                 return 'Underweight'
@@ -38,8 +39,7 @@ export default function Input() {
             }
             else {
                 return 'Obese'
-            }
-            
+            }   
         }
         return ''
     }
