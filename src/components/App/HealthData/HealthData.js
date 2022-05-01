@@ -1,7 +1,6 @@
 import './HealthData.css'
 import BMI from './BMI'
 import React, { useState } from 'react';
-import PropTypes from 'prop-types'
 import Input from './Input';
 
 
@@ -19,8 +18,6 @@ export default function HealthData() {
         'Blood Pressure',
         'Sleep Pattern',
     ]
-
-    const paths = [ 'BMI', 'LMB', 'HeartRate', 'BP', 'Sleep']
 
     return (
         <div className="HealthData">
