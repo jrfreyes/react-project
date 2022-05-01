@@ -30,7 +30,7 @@ export default function BMI() {
     }
 
     return (
-        <div className="container">  
+        <div className="BMI">  
             <label>
                 <input type="number" onChange={e => setHeight(e.target.valueAsNumber)} 
                     placeholder="Enter Your Height in Centimeters: "/ >

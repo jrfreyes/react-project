@@ -1,15 +1,15 @@
-.HealthDataOptions {
+.StatisticsOptions {
     width: 20%;
     position: fixed;
 
 }
 
-.HealthDataOptions button{
+.StatisticsOptions button{
     width: 100%;
     height: 50px;
     display: block;
 }
 
-.HealthDataContent {
+.StatisticsContent {
     margin-left: 25%;
 }

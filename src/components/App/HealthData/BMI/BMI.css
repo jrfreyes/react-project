@@ -1,5 +1,5 @@
-*{margin: 0; padding: 0;font-family: 'Arial';}
-.container{
+.BMI *{margin: 0; padding: 0;font-family: 'Arial';}
+.BMI {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
@@ -10,11 +10,8 @@
     grid-template-rows: repeat(3,10vh) 5vh repeat(2,10vh);
     grid-gap: 10px;
 }
-body{
-    background: white;
-}
 
-h1{
+.BMI h1{
     text-align: center;
     color: white;
 }
@@ -40,7 +37,7 @@ h1{
     color: black;
     border-radius: 10px;
 }
-input{
+.BMI input{
     min-width: 100%;
     min-height: 100%;
     border: none;
@@ -48,7 +45,7 @@ input{
     font-size: 1.5vw;
     border-radius: 8px;
 }
-button{
+.BMI button{
     min-width: 50%;
     min-height: 25%;
     border: none;
@@ -56,26 +53,26 @@ button{
     font-size: 1.5vw;
     border-radius: 5px;
 }
-input{
+.BMI input{
     background: white;
     text-indent: 0.5em;
     max-width:100% ;
     color: black;
     outline: none;
 }
-input::-webkit-outer-spin-button,
+.BMI input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-input[type=number] {
+.BMI input[type=number] {
     -moz-appearance: textfield;
 }
-button{
+.BMI button{
     background: #8BD7F7;
     cursor: pointer;
 }
-button:hover{
+.BMI button:hover{
     background: #6094AA;
     color: white;
 }

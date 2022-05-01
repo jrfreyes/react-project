@@ -1,8 +1,12 @@
 import './HealthData.css'
+import BMI from './BMI'
 import React, { useState } from 'react';
+import PropTypes from 'prop-types'
+import Input from './Input';
 
-function HealthData() {
-    const [currentPage, setCurrentPage] = useState("BMI");
+
+export default function HealthData() {
+    const [currentPage, setCurrentPage] = useState("");
     function switchPage(page) {
         setCurrentPage(page)
         console.log(currentPage)
@@ -15,23 +19,37 @@ function HealthData() {
         'Blood Pressure',
         'Sleep Pattern',
     ]
+
+    const paths = [ 'BMI', 'LMB', 'HeartRate', 'BP', 'Sleep']
+
     return (
         <div className="HealthData">
+            
+
             <div className="HealthDataOptions">
                 {pages.map((page) => (
                     <button onClick={() => switchPage(page)}>{page}</button>
                 ))}
-                
+                <hr/>
+                <button onClick={() => switchPage('BMI')}>Calculate BMI</button>
+                <button onClick={() => switchPage('Input')}>Input Data</button>
             </div>
             <div className="HealthDataContent">
+            { currentPage === 'BMI' ?
+            <BMI /> 
+            : currentPage === 'Input' ?
+            <Input />
+            : (
+            
                 <center>
                     <p><img src='placeholder.png' alt='Place Graph Here'/></p>
                     <p>{currentPage}</p>
                 </center>
+            
+            )
+            }
             </div>
         </div>
         
     );
 }
-
-export default HealthData;
