@@ -1,7 +1,10 @@
 function Calculate(){
     var bp = document.getElementById("b-input").value;
 
-    if(bp < 120){
+    if(bp < 90){
+        document.getElementById("bp-output").innerHTML = "Low";
+    }
+    else if(bp < 120){
         document.getElementById("bp-output").innerHTML = "Normal";
     }
     else if(120 < bp < 129){
