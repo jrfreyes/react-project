@@ -27,8 +27,8 @@ export default function Input() {
                 <input type="number" placeholder="Enter diastolic BP in mmHg" required/>
                 <br/>
                 <label><b>Sleep and Wake Times</b></label><br/>
-                <input type="text" placeholder="Enter Sleep Time" required/>
-                <input type="text" placeholder="Enter Wake Time" required/>
+                <input type="time" placeholder="Enter Sleep Time" required/>
+                <input type="time" placeholder="Enter Wake Time" required/>
                 <br/>
                 <div className="center">
                 <button type="submit">Submit</button>
