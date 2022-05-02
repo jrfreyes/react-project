@@ -11,13 +11,28 @@ export default function Input() {
     // Update BMI whenever weight or height changes
     useEffect(() => {
         setBMI(Math.round(weight/((height/100)**2) * 100)/100);
-        console.log(bmi);
     }, [weight, height])
 
     // Update status as soon as bmi is updated
     useEffect(() => {
+        const calcStat = () => {
+            if (bmi > 0) {
+                if (bmi < 18.5) {
+                    return 'Underweight'
+                }
+                else if (bmi < 25) {
+                    return 'Healthy'
+                }
+                else if (bmi < 30) {
+                    return 'Overweight'
+                }
+                else {
+                    return 'Obese'
+                }   
+            }
+            return ''
+        }
         setStat(calcStat());
-        console.log(stat);
     }, [bmi])
 
     async function handleSubmit(e) {
@@ -26,23 +41,7 @@ export default function Input() {
     }
 
 
-    const calcStat = () => {
-        if (bmi > 0) {
-            if (bmi < 18.5) {
-                return 'Underweight'
-            }
-            else if (bmi < 25) {
-                return 'Healthy'
-            }
-            else if (bmi < 30) {
-                return 'Overweight'
-            }
-            else {
-                return 'Obese'
-            }   
-        }
-        return ''
-    }
+    
     
     
 
