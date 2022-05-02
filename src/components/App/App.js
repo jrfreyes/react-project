@@ -3,6 +3,7 @@ import Login from './Login';
 import HealthData from './HealthData';
 import Statistics from './Statistics';
 import Recommendations from './Recommendations';
+import PillIntake from './PillIntake';
 import SignUp from './SignUp/SignUp';
 import useToken from './useToken';
 import React from 'react';
@@ -85,7 +86,7 @@ function Contents( {user} ) {
                     </div>
                 </div>
                 <div className='Contents'>
-                    <nav>
+                    <nav className='Navigation'>
                         {sections.map(section => (
                             <button onClick={() => navigate(section.path)}>{section.name}</button>
                         ))}
@@ -114,14 +115,6 @@ LogOut.propTypes = {
     setUser: PropTypes.func.isRequired
 }
 
-
-function PillIntake() {
-    return (
-        <h2>
-            Pill Intake
-        </h2>
-    )
-}
 
 function NoMatch() {
     return (

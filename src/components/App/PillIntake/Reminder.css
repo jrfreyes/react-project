@@ -1,0 +1,32 @@
+.Reminder {
+    padding: 10px;
+}
+
+.ReminderHeader {
+    border-radius: 15px 15px 0px 0px;
+    border: 1px;
+    border-bottom: none;
+    background-color: #8bd7f7;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+.ReminderSpacer {
+    background-color: rgb(224, 222, 222);
+    height: 10px;
+}
+
+.ReminderContents {
+    border-radius: 0px 0px 15px 15px ;
+    border: 1px solid #8bd7f7;
+    border-top: none;
+    text-align: center;
+    background-color: white;
+    padding: 5px;
+}
+
+.DrugName {
+    font-weight: bold;
+    font-size: larger;
+}

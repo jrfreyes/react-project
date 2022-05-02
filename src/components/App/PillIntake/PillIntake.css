@@ -1,0 +1,22 @@
+.PillIntake {
+    padding: 20px;
+    display: flex;
+}
+
+.PillSideBar {
+    border: 2px solid lightgrey;
+    width: 25%;
+    display: flex;
+    padding: 10px;
+}
+
+.Reminders {
+    border: 2px solid lightgrey;
+    width: 75%;
+}
+
+.PillSideBar button {
+    position: sticky;
+    height: 50px;
+    bottom: 20px;
+}
