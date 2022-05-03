@@ -7,6 +7,7 @@ import 'react-clock/dist/Clock.css';
 
 export default function PillIntake() {
     const [time, setTime] = useState(new Date())
+    // const [reminders, setReminders] = useReminders 
     const [overlayActive, setOverlayActive] = useState(false)
 
     useEffect(() => {
@@ -46,9 +47,14 @@ function Overlay({setOverlayActive}) {
         setOverlayActive(false)
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setOverlayActive(false)
+    }
+
     return (
         <div id="overlay" onClick={close}>
-            <form className="AddNew center" onClick={e => e.stopPropagation()}>
+            <form className="AddNew center" onClick={e => e.stopPropagation()} onSubmit={handleSubmit}>
                 <div className="AddNewHeader">Add New Medicine
                 <button className="close-button" aria-label="Close" onClick={close}>
                     <span aria-hidden='true'>&times;</span>
