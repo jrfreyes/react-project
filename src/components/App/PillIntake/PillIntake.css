@@ -12,8 +12,10 @@
 }
 
 .Reminders {
+    overflow-y: auto;
     border: 2px solid lightgrey;
     width: 75%;
+    max-height: 600px;
 }
 
 .PillSideBar button {

@@ -1,23 +1,21 @@
 import PropTypes from 'prop-types'
 import './Reminder.css'
 
-export default function Reminder({time, drugName, instructions}) {
+export default function Reminder({reminderData}) {
     return (
         <div className="Reminder">
             <div className='ReminderHeader'>
-                8:00AM
+                {reminderData.time}
             </div>
             <div className='ReminderSpacer' />
             <div className='ReminderContents'>
-                <p className='DrugName'>Simvastatin</p>
-                <p className='Instructions'>5mg. Take 1 with food</p>
+                <p className='DrugName'>{reminderData.name}</p>
+                <p className='Instructions'>{reminderData.instructions}</p>
             </div>
         </div>
     )
 }
 
 Reminder.propTypes = {
-    time: PropTypes.any,
-    drugName: PropTypes.string,
-    instructions: PropTypes.string,
+    reminderData: PropTypes.any,
 }

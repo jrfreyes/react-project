@@ -1,5 +1,6 @@
 import Reminder from "./Reminder";
 import './PillIntake.css'
+import useReminders from "./useReminders";
 import { useEffect, useState } from "react";
 import Clock from "react-clock";
 import PropTypes from 'prop-types';
@@ -9,6 +10,7 @@ export default function PillIntake() {
     const [time, setTime] = useState(new Date())
     // const [reminders, setReminders] = useReminders 
     const [overlayActive, setOverlayActive] = useState(false)
+    const {reminders, setReminders} = useReminders()
 
     useEffect(() => {
         const interval = setInterval(() => setTime(new Date()), 1000)
@@ -29,9 +31,9 @@ export default function PillIntake() {
                 <button className="center" onClick={() => setOverlayActive(true)}>Add New</button>
             </div>
             <div className="Reminders">
-                <Reminder />
-                <Reminder />
-                <Reminder />
+                {reminders ? Object.keys(reminders).map((key) => (
+                    <Reminder reminderData={reminders[key]} />
+                )) : null}
             </div>
             {
                 overlayActive ? (

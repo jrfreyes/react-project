@@ -1,0 +1,19 @@
+{
+    "items": [
+        {
+            "time": "8:00AM",
+            "name": "Simvastatin",
+            "instructions": "5mg. Take 1 with food"
+        },
+        {
+            "time": "12:00PM",
+            "name": "Albuterol",
+            "instructions": "2 Puffs"
+        },
+        {
+            "time": "6:30PM",
+            "name": "Loratadine",
+            "instructions": "10mg. Take 1 with food"
+        }
+    ]
+}
