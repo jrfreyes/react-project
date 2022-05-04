@@ -1,19 +1,22 @@
 {
     "items": [
         {
-            "time": "8:00AM",
+            "time": "08:00",
             "name": "Simvastatin",
-            "instructions": "5mg. Take 1 with food"
+            "instructions": "5mg. Take 1 with food",
+            "interval": 24
         },
         {
-            "time": "12:00PM",
+            "time": "12:00",
             "name": "Albuterol",
-            "instructions": "2 Puffs"
+            "instructions": "2 Puffs",
+            "interval": 24
         },
         {
-            "time": "6:30PM",
+            "time": "18:30",
             "name": "Loratadine",
-            "instructions": "10mg. Take 1 with food"
+            "instructions": "10mg. Take 1 with food",
+            "interval": 24
         }
     ]
 }

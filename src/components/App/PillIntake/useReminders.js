@@ -14,7 +14,10 @@ export default function useReminders() {
     
     const populateReminders = () => {
         const sampleReminders = json.items
-        const remindersData = Object.fromEntries(sampleReminders.map((sampleReminder) => [uuidv4(), sampleReminder]))
+        const remindersData = Object.fromEntries(sampleReminders.map((sampleReminder) => {
+            const id = uuidv4();
+            return [id, {"id": id, ...sampleReminder}]
+        }))
         localStorage.setItem('reminders', JSON.stringify(remindersData));
         return remindersData
     }
