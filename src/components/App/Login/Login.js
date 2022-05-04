@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import './Login.css'
 
+// TODO Implement actual login with credential checking
+
 export default function Login( {setToken, setUser} ) {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState()
