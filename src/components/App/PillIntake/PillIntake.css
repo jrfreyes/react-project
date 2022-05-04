@@ -97,8 +97,18 @@
     padding: 5px;
 }
 
-.AddNewForm button {
-    margin-left: 50%;
-    width: 50%;
+div.Buttons {
+    height: 50px;
+}
+
+button.Save  {
+    float: right;
+    width: 45%;
+    border-radius: 10px;
+}
+
+button.Delete {
+    float: left;
+    width: 45%;
     border-radius: 10px;
 }

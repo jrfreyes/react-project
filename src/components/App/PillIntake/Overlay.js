@@ -12,13 +12,11 @@ export default function Overlay({setOverlayActive, reminders, setReminders, acti
     const id = activeReminder?.id || uuidv4()
     
     const close = (e) => {
-        console.log(e,'Closed')
         e.preventDefault()
         setOverlayActive(false)
     }
 
     const handleSubmit = (e) => {
-        console.log('Submitted')
         e.preventDefault()
         let formData = new FormData(e.target)
         let newData = {"id": id}
@@ -27,6 +25,15 @@ export default function Overlay({setOverlayActive, reminders, setReminders, acti
         let newReminders = JSON.parse(JSON.stringify(reminders))
         newReminders[id] = newData
         
+        setReminders(newReminders)
+        setOverlayActive(false)
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault()
+        let newReminders = JSON.parse(JSON.stringify(reminders))
+        delete newReminders[id]
+
         setReminders(newReminders)
         setOverlayActive(false)
     }
@@ -40,7 +47,7 @@ export default function Overlay({setOverlayActive, reminders, setReminders, acti
                 </button>
                 </div>
                 <div className="AddNewForm">
-                    <label>
+                    <label htmlFor='name'>
                         Medicine Name
                         <input type='text' id='name' name='name' defaultValue={defaultValues.name} required />
                     </label>
@@ -58,7 +65,10 @@ export default function Overlay({setOverlayActive, reminders, setReminders, acti
                         Starting Time
                         <input type='time' id='time' name='time' defaultValue={defaultValues.time} required />
                     </label>
-                    <button type='submit'>{activeReminder ? 'Save' : 'Add'}</button>
+                    <div className='Buttons'>
+                    {activeReminder && <button type='reset' className='Delete' onClick={handleDelete}>Delete</button>}
+                    <button type='submit' className='Save'>{activeReminder ? 'Save' : 'Add'}</button>
+                    </div>
                 </div>
             </form>
         </div>

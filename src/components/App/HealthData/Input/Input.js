@@ -15,24 +15,7 @@ export default function Input() {
 
     // Update status as soon as bmi is updated
     useEffect(() => {
-        const calcStat = () => {
-            if (bmi > 0) {
-                if (bmi < 18.5) {
-                    return 'Underweight'
-                }
-                else if (bmi < 25) {
-                    return 'Healthy'
-                }
-                else if (bmi < 30) {
-                    return 'Overweight'
-                }
-                else {
-                    return 'Obese'
-                }   
-            }
-            return ''
-        }
-        setStat(calcStat());
+        setStat(calcStat(bmi));
     }, [bmi])
 
     async function handleSubmit(e) {
@@ -83,3 +66,20 @@ export default function Input() {
     )
 }
 
+function calcStat (bmi)  {
+    if (bmi > 0) {
+        if (bmi < 18.5) {
+            return 'Underweight'
+        }
+        else if (bmi < 25) {
+            return 'Healthy'
+        }
+        else if (bmi < 30) {
+            return 'Overweight'
+        }
+        else {
+            return 'Obese'
+        }   
+    }
+    return ''
+}
