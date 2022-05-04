@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import './Reminder.css'
 
-export default function Reminder({reminderData}) {
+export default function Reminder({reminderId, reminderData}) {
     return (
         <div className="Reminder">
             <div className='ReminderHeader'>
@@ -17,5 +17,6 @@ export default function Reminder({reminderData}) {
 }
 
 Reminder.propTypes = {
+    reminderId: PropTypes.any,
     reminderData: PropTypes.any,
 }
