@@ -88,7 +88,7 @@ function Contents( {user} ) {
                 <div className='Contents'>
                     <nav className='Navigation'>
                         {sections.map(section => (
-                            <button onClick={() => navigate(section.path)}>{section.name}</button>
+                            <button key={section.name} onClick={() => navigate(section.path)}>{section.name}</button>
                         ))}
                     </nav>
                 
