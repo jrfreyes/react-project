@@ -12,13 +12,14 @@ export default function Overlay({setOverlayActive, reminders, setReminders, acti
     const id = activeReminder?.id || uuidv4()
     
     const close = (e) => {
+        console.log(e,'Closed')
         e.preventDefault()
         setOverlayActive(false)
     }
 
     const handleSubmit = (e) => {
+        console.log('Submitted')
         e.preventDefault()
-        console.log(e)
         let formData = new FormData(e.target)
         let newData = {"id": id}
         newData = {...newData, ...Object.fromEntries(formData.entries())}
@@ -34,7 +35,7 @@ export default function Overlay({setOverlayActive, reminders, setReminders, acti
         <div id="overlay" onClick={close}>
             <form className="AddNew center" onClick={e => e.stopPropagation()} onSubmit={handleSubmit}>
                 <div className="AddNewHeader">{activeReminder ? "Edit Reminder" : "Add New Medicine"}
-                <button className="close-button" aria-label="Close" onClick={close}>
+                <button className="close-button" type='reset' aria-label="Close" onClick={close}>
                     <span aria-hidden='true'>&times;</span>
                 </button>
                 </div>

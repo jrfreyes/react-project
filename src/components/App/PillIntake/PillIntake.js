@@ -28,9 +28,16 @@ export default function PillIntake() {
                 <button className="center" onClick={handleAdd}>Add New</button>
             </div>
             <div className="Reminders">
-                {reminders ? Object.keys(reminders).map((id) => (
+                {reminders ? Object.keys(reminders)
+                    .sort((a,b) => {
+                    if (reminders[a].time > reminders[b].time) return 1
+                    if (reminders[a].time < reminders[b].time) return -1
+                    return 0
+                    })
+                .map((id) => (
                     <Reminder key={id} reminderId={id} reminderData={reminders[id]} handleEdit={handleEdit} />
-                )) : null}
+                )) 
+                : null}
             </div>
             {
                 overlayActive ? (

@@ -26,7 +26,6 @@ export default function useReminders() {
     
     const saveReminders = remindersData => {
         if (remindersData) {
-            console.log(remindersData)
             localStorage.setItem('reminders', JSON.stringify(remindersData));
             setReminders(remindersData);
         }
