@@ -31,8 +31,8 @@ export default function PillIntake() {
                 <button className="center" onClick={() => setOverlayActive(true)}>Add New</button>
             </div>
             <div className="Reminders">
-                {reminders ? Object.keys(reminders).map((key) => (
-                    <Reminder reminderData={reminders[key]} />
+                {reminders ? Object.keys(reminders).map((id) => (
+                    <Reminder key={id} reminderId={id} reminderData={reminders[id]} />
                 )) : null}
             </div>
             {
