@@ -21,11 +21,11 @@ export default function Overlay({setOverlayActive, reminders, setReminders, acti
         console.log(e)
         let formData = new FormData(e.target)
         let newData = {"id": id}
-        for (let [key, value] of formData.entries()) {
-            newData[key] = value
-        }
+        newData = {...newData, ...Object.fromEntries(formData.entries())}
+
         let newReminders = JSON.parse(JSON.stringify(reminders))
         newReminders[id] = newData
+        
         setReminders(newReminders)
         setOverlayActive(false)
     }
