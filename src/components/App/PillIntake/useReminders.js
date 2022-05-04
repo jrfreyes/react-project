@@ -8,7 +8,6 @@ export default function useReminders() {
         let remindersData = JSON.parse(remindersString);
         if (!remindersData) {
             remindersData = populateReminders()
-            saveReminders(remindersData)
         }
         return remindersData;
     }
@@ -16,10 +15,9 @@ export default function useReminders() {
     const populateReminders = () => {
         const sampleReminders = json.items
         const remindersData = Object.fromEntries(sampleReminders.map((sampleReminder) => [uuidv4(), sampleReminder]))
-        
+        localStorage.setItem('reminders', JSON.stringify(remindersData));
         return remindersData
     }
-
 
     const [reminders, setReminders] = useState(getReminders());
     
