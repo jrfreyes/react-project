@@ -12,13 +12,11 @@ export default function Overlay({setOverlayActive, reminders, setReminders, acti
     const id = activeReminder?.id || uuidv4()
     
     const close = (e) => {
-        console.log(e,'Closed')
         e.preventDefault()
         setOverlayActive(false)
     }
 
     const handleSubmit = (e) => {
-        console.log('Submitted')
         e.preventDefault()
         let formData = new FormData(e.target)
         let newData = {"id": id}
