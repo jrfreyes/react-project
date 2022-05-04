@@ -29,6 +29,15 @@ export default function Overlay({setOverlayActive, reminders, setReminders, acti
         setOverlayActive(false)
     }
 
+    const handleDelete = (e) => {
+        e.preventDefault()
+        let newReminders = JSON.parse(JSON.stringify(reminders))
+        delete newReminders[id]
+
+        setReminders(newReminders)
+        setOverlayActive(false)
+    }
+
     return (
         <div id="overlay" onClick={close}>
             <form className="AddNew center" onClick={e => e.stopPropagation()} onSubmit={handleSubmit}>
@@ -38,7 +47,7 @@ export default function Overlay({setOverlayActive, reminders, setReminders, acti
                 </button>
                 </div>
                 <div className="AddNewForm">
-                    <label>
+                    <label htmlFor='name'>
                         Medicine Name
                         <input type='text' id='name' name='name' defaultValue={defaultValues.name} required />
                     </label>
@@ -56,7 +65,10 @@ export default function Overlay({setOverlayActive, reminders, setReminders, acti
                         Starting Time
                         <input type='time' id='time' name='time' defaultValue={defaultValues.time} required />
                     </label>
-                    <button type='submit'>{activeReminder ? 'Save' : 'Add'}</button>
+                    <div className='Buttons'>
+                    {activeReminder && <button type='reset' className='Delete' onClick={handleDelete}>Delete</button>}
+                    <button type='submit' className='Save'>{activeReminder ? 'Save' : 'Add'}</button>
+                    </div>
                 </div>
             </form>
         </div>
