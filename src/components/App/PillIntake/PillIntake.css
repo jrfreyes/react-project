@@ -1,0 +1,106 @@
+.PillIntake {
+    padding: 20px;
+    display: flex;
+}
+
+.PillSideBar {
+    border: 2px solid lightgrey;
+    width: 25%;
+    display: block;
+    padding: 10px;
+    padding-right: 15px;
+}
+
+.Reminders {
+    overflow-y: auto;
+    border: 2px solid lightgrey;
+    width: 75%;
+    max-height: 600px;
+}
+
+.PillSideBar button {
+    position: sticky;
+    height: 50px;
+    bottom: 20px;
+}
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+.AddNew {
+    border-radius: 10px 10px 0px 0px;
+    
+    border: 2px solid rgb(224, 222, 222);
+    background-color: white;
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    cursor: default;
+    display: block;
+}
+
+.AddNewHeader {
+    border-radius: 10px ;
+    border: 1px;
+    border-bottom: none;
+    background-color: #8bd7f7;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+.close-button {
+    position: absolute;
+    background: none;
+    width: auto;
+    height: auto;
+    line-height: 1;
+    height:inherit;
+    right: 0px;
+    top: 0px;
+    z-index: 10;
+    margin: 0px;
+}
+
+.close-button:hover {
+    background: none;
+    color: grey;
+}
+
+.AddNewForm {
+    padding: 30px;
+}
+
+.AddNewForm input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 10px;
+}
+
+.form-inline input {
+    width: 4ch;
+    text-align: center;
+    padding: 5px;
+    padding-left: none;
+    padding-right: none;
+}
+
+.AddNewForm button {
+    margin-left: 50%;
+    width: 50%;
+    border-radius: 10px;
+}

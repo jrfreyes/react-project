@@ -1,6 +1,5 @@
 import './Statistics.css'
 import React, { useState } from 'react';
-import PropTypes from 'prop-types'
 
 
 export default function Statistics() {
@@ -17,8 +16,6 @@ export default function Statistics() {
         'Blood Pressure',
         'Sleep Pattern',
     ]
-
-    const paths = [ 'BMI', 'LMB', 'HeartRate', 'BP', 'Sleep']
 
     return (
         <div className="Statistics">
