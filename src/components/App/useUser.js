@@ -13,7 +13,6 @@ export default function useUser() {
         if (user) {
             localStorage.setItem('user', JSON.stringify(user));
             setUser(user.user);
-            console.log(user.user);
         }
         else {
             localStorage.removeItem('user');

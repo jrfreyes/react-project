@@ -52,7 +52,6 @@ export default function App() {
 
 function Home() {
     let navigate = useNavigate();
-    console.log('Hello')
     return (
     <div className="hero-text">
         <img src="images/logo.png" style={{width:'30%'}} alt='' />
