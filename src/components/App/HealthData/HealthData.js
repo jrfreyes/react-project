@@ -2,7 +2,7 @@ import './HealthData.css'
 import BMI from './BMI'
 import React, { useState } from 'react';
 import Input from './Input';
-import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ReferenceLine } from 'recharts';
 import generateData, { formatTime, generateSampleData } from './generateData';
 
 
@@ -40,6 +40,18 @@ export default function HealthData() {
         <XAxis dataKey="name" />
         { currentPage.key === 'sleep' ?
         <YAxis reversed/> : <YAxis />
+        }
+        {currentPage.key === 'bmi' && 
+        <React.Fragment>
+            <ReferenceLine y={18.5} stroke='pink' 
+                label={{value:'Underweight', position:'insideTopRight', style:{fill: '#88000088'}}} />
+            <ReferenceLine y={25} stroke='#88ff88' strokeDasharray={[3, 3]} 
+                label={{value:'Healthy', position: 'insideTopRight', style:{fill: '#00880088'}}} />
+            <ReferenceLine y={30} stroke='green' strokeDasharray={[3, 3]}
+                label={{value:'Overweight', position: 'insideTopRight', style:{fill: '#008800FF'}}} />
+            <ReferenceLine y={35} stroke='red' 
+                label={{value:'Obese', position:'insideTopRight', style:{fill: '#880000FF'}}} />
+        </React.Fragment>
         }
         <Tooltip formatter={currentPage.formatter}/>
     </LineChart>
