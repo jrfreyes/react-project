@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from 'prop-types'
 
-export default function Input() {
+export default function Input({switchPage}) {
     const navigate = useNavigate();
     const [weight, setWeight] = useState(0);
     const [height, setHeight] = useState(0);
@@ -20,12 +21,9 @@ export default function Input() {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        switchPage('bmi')
         navigate('/HealthData');
     }
-
-
-    
-    
     
 
     return (
@@ -64,6 +62,10 @@ export default function Input() {
             </form>
         </div>
     )
+}
+
+Input.propTypes = {
+    switchPage: PropTypes.func
 }
 
 function calcStat (bmi)  {
