@@ -2,17 +2,22 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import './Login.css'
+import bcrypt from 'bcryptjs'
+
+const saltRounds = 10;
+
 
 // TODO Implement actual login with credential checking
 
 export default function Login( {setToken, setUser} ) {
-    const [username, setUsername] = useState();
-    const [password, setPassword] = useState()
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('')
     const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log(username+password);
+        const passwordHash = bcrypt.hashSync(password, saltRounds);
+        console.log(username+passwordHash);
         // for now maybe just use LocalStorage as database analogue
         setToken({token: 'Hello'}); // Token should be taken from a server ideally
         setUser({user: username});
