@@ -4,24 +4,32 @@ import PropTypes from 'prop-types';
 import './Login.css'
 import bcrypt from 'bcryptjs'
 
-const saltRounds = 10;
-
-
 // TODO Implement actual login with credential checking
 
-export default function Login( {setToken, setUser} ) {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('')
+export default function Login( {setToken, setUser, userDatabase} ) {
+    const [invalidUsername, setInvalidUsername] = useState(false);
+    const [invalidPassword, setInvalidPassword] = useState(false);
     const navigate = useNavigate();
+    
+    const saltRounds = 10;
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const passwordHash = bcrypt.hashSync(password, saltRounds);
-        console.log(username+passwordHash);
-        // for now maybe just use LocalStorage as database analogue
-        setToken({token: 'Hello'}); // Token should be taken from a server ideally
-        setUser({user: username});
-        navigate('/');
+        setInvalidPassword(false)
+        setInvalidUsername(false)
+        const formData = new FormData(e.target)
+        const {username, password} = Object.fromEntries(formData.entries())
+        if (username in userDatabase){
+            if (bcrypt.compareSync(password, userDatabase[username].passwordHash)) {
+                setToken({token: 'Hello'}); // Token should be taken from a server ideally
+                setUser({user: username});
+                navigate('/');
+            }
+            else setInvalidPassword(true)
+        }
+        else {
+            setInvalidUsername(true)
+        }
     }
     return (
         <div className="Login">
@@ -30,14 +38,15 @@ export default function Login( {setToken, setUser} ) {
             <form onSubmit={handleSubmit}>
 
             <div className="container">
-                <label><b>Username</b></label><br/>
-                <input type="text" placeholder="Enter Username"
-                    onChange={e => setUsername(e.target.value)} required/>
+                <label htmlFor="username"><b>Username</b></label><br/>
+                <input type="text" placeholder="Enter Username" 
+                    name="username" id="username" required/>
                 <br/>
-                <label><b>Password</b></label><br/>
-                <input type="password" placeholder="Enter Password"
-                    onChange={e => setPassword(e.target.value)} required/>
-                    
+                <label htmlFor="password"><b>Password</b></label><br/>
+                <input type="password" placeholder="Enter Password" 
+                    name="password" id="password" required/>
+                {invalidUsername && <p className="Invalid">The username you entered is invalid.</p>}
+                {invalidPassword && <p className="Invalid">The password you entered is invalid.</p>}
                 <button type="submit">LOG IN</button>
                 <label>
                     <span className="acc">Need an account? <Link to='/SignUp'>SIGN UP</Link></span>
@@ -54,5 +63,6 @@ export default function Login( {setToken, setUser} ) {
 
 Login.propTypes = {
     setToken: PropTypes.func.isRequired,
-    setUser: PropTypes.func.isRequired
+    setUser: PropTypes.func.isRequired,
+    userDatabase: PropTypes.any.isRequired
 }

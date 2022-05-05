@@ -17,17 +17,19 @@ import {
     Link,
 } from 'react-router-dom';
 import useUser from './useUser';
+import useUserDatabase from './useUserDatabase';
 
 export default function App() {
     const {token, setToken} = useToken();
     const {user, setUser} = useUser();
+    const {userDatabase, setUserDatabase} = useUserDatabase();
 
     if(!token) {
         return (
             <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='/Login' element={<Login setToken={setToken} setUser={setUser} />} />
-                <Route path='/SignUp' element={<SignUp setToken={setToken} setUser={setUser} />} />
+                <Route path='/Login' element={<Login setToken={setToken} setUser={setUser} userDatabase={userDatabase}/>} />
+                <Route path='/SignUp' element={<SignUp userDatabase={userDatabase} setUserDatabase={setUserDatabase} />} />
                 <Route path='/*' element={<Navigate to='/' replace />} />
             </Routes>
         )

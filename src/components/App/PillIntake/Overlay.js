@@ -40,7 +40,7 @@ export default function Overlay({setOverlayActive, reminders, setReminders, acti
 
     return (
         <div id="overlay" onClick={close}>
-            <form className="AddNew center" onClick={e => e.stopPropagation()} onSubmit={handleSubmit}>
+            <form className="AddNew center OverlayContent" onClick={e => e.stopPropagation()} onSubmit={handleSubmit}>
                 <div className="AddNewHeader">{activeReminder ? "Edit Reminder" : "Add New Medicine"}
                 <button className="close-button" type='reset' aria-label="Close" onClick={close}>
                     <span aria-hidden='true'>&times;</span>
