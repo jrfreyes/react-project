@@ -16,7 +16,9 @@ export default function PillClock() {
             <div className="PillClock center">
                 <Clock value={time} />
             </div>
-            <p className="center">{time.toLocaleString('default', { 'day': 'numeric', 'month': 'long' })}</p>
+            <p className="center">
+                {time.toLocaleString('default', { 'day': 'numeric', 'month': 'long' })}
+            </p>
         </React.Fragment>
     );
 

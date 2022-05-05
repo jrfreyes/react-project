@@ -1,10 +1,10 @@
 import Reminder from "./Reminder";
-import './PillIntake.css'
 import useReminders from "./useReminders";
 import React, { useState } from "react";
 import Overlay from "./Overlay";
-import 'react-clock/dist/Clock.css';
 import PillClock from "./PillClock";
+import './PillIntake.css'
+import 'react-clock/dist/Clock.css';
 
 export default function PillIntake() {
     const [overlayActive, setOverlayActive] = useState(false)
@@ -28,23 +28,33 @@ export default function PillIntake() {
                 <button className="center" onClick={handleAdd}>Add New</button>
             </div>
             <div className="Reminders">
-                {reminders ? Object.keys(reminders)
-                    .sort((a,b) => {
-                    if (reminders[a].time > reminders[b].time) return 1
-                    if (reminders[a].time < reminders[b].time) return -1
-                    return 0
-                    })
-                .map((id) => (
-                    <Reminder key={id} reminderId={id} reminderData={reminders[id]} handleEdit={handleEdit} />
-                )) 
-                : null}
+                {reminders && (
+                    Object.keys(reminders)
+                        .sort((a,b) => {
+                            if (reminders[a].time > reminders[b].time) 
+                                return 1
+                            if (reminders[a].time < reminders[b].time) 
+                                return -1
+                            return 0
+                        })
+                        .map((id) => (
+                            <Reminder 
+                                key={id} 
+                                reminderId={id} 
+                                reminderData={reminders[id]} 
+                                handleEdit={handleEdit} 
+                            />
+                        ))
+                )}
             </div>
-            {
-                overlayActive ? (
-                    <Overlay setOverlayActive={setOverlayActive} reminders={reminders} setReminders={setReminders} 
-                        activeReminder={activeReminder} />
-                ) : null
-            }
+            {overlayActive && (
+                <Overlay 
+                    setOverlayActive={setOverlayActive} 
+                    reminders={reminders} 
+                    setReminders={setReminders} 
+                    activeReminder={activeReminder} 
+                />
+            )}
         </div>
     )
 }

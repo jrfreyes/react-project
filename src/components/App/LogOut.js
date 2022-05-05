@@ -5,9 +5,7 @@ import { Navigate } from 'react-router-dom';
 export default function LogOut({ setToken, setUser }) {
     setToken('');
     setUser('');
-    return (
-        <Navigate to='/' />
-    );
+    return <Navigate to='/' />;
 }
 LogOut.propTypes = {
     setToken: PropTypes.func.isRequired,

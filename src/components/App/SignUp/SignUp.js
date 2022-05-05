@@ -54,7 +54,11 @@ export default function SignUp( {userDatabase, setUserDatabase} ) {
                     name="password" id="password" required/>
 
                 
-                {usernameTaken && <p className="Invalid">The username you entered is already taken.</p>}    
+                {usernameTaken && (
+                    <p className="Invalid">
+                        The username you entered is already taken.
+                    </p>
+                )}    
                 <button type="submit">SIGN UP</button>
                 <label>
                     <span className="acc">Already a user? <Link to='/Login'>LOGIN</Link></span>
@@ -64,13 +68,13 @@ export default function SignUp( {userDatabase, setUserDatabase} ) {
                 
             </div>
             </form>
-            {creationSuccess &&
+            {creationSuccess && (
                 <div id="overlay" onClick={() => navigate('/')}>
                     <p className="OverlayContent OverlayText">
                         Your account has been created successfully.
                     </p>
                 </div>
-            }
+            )}
         </div>
     )
 }

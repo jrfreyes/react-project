@@ -40,34 +40,76 @@ export default function Overlay({setOverlayActive, reminders, setReminders, acti
 
     return (
         <div id="overlay" onClick={close}>
-            <form className="AddNew center OverlayContent" onClick={e => e.stopPropagation()} onSubmit={handleSubmit}>
-                <div className="AddNewHeader">{activeReminder ? "Edit Reminder" : "Add New Medicine"}
-                <button className="close-button" type='reset' aria-label="Close" onClick={close}>
-                    <span aria-hidden='true'>&times;</span>
-                </button>
+            <form 
+                className="AddNew center OverlayContent" 
+                onClick={e => e.stopPropagation()} 
+                onSubmit={handleSubmit}
+            >
+                <div className="AddNewHeader">
+                    {activeReminder ? "Edit Reminder" : "Add New Medicine"}
+                    <button 
+                        className="close-button" 
+                        type='reset' 
+                        aria-label="Close" 
+                        onClick={close}
+                    >
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
                 </div>
                 <div className="AddNewForm">
                     <label htmlFor='name'>
                         Medicine Name
-                        <input type='text' id='name' name='name' defaultValue={defaultValues.name} required />
+                        <input 
+                            type='text' 
+                            id='name' 
+                            name='name' 
+                            defaultValue={defaultValues.name} 
+                            required 
+                        />
                     </label>
                     <label>
                         Instructions
-                        <input type='text' id='instructions' name='instructions' 
-                            defaultValue={defaultValues.instructions} required />
+                        <input 
+                            type='text' 
+                            id='instructions' 
+                            name='instructions' 
+                            defaultValue={defaultValues.instructions} 
+                            required 
+                        />
                     </label>
                     <label className="form-inline">
                         Interval Selection<br/>
-                        Remind me every <input type='number' min='1' max='99' id='interval' name='interval'
-                            defaultValue={defaultValues.interval} required /> hours<br/>
+                        Remind me every 
+                        <input 
+                            type='number' 
+                            min='1' 
+                            max='99' 
+                            id='interval' 
+                            name='interval'
+                            defaultValue={defaultValues.interval} 
+                            required 
+                        /> 
+                        hours<br/>
                     </label>
                     <label>
                         Starting Time
-                        <input type='time' id='time' name='time' defaultValue={defaultValues.time} required />
+                        <input 
+                            type='time' 
+                            id='time' 
+                            name='time' 
+                            defaultValue={defaultValues.time} 
+                            required 
+                        />
                     </label>
                     <div className='Buttons'>
-                    {activeReminder && <button type='reset' className='Delete' onClick={handleDelete}>Delete</button>}
-                    <button type='submit' className='Save'>{activeReminder ? 'Save' : 'Add'}</button>
+                        {activeReminder && (
+                            <button type='reset' className='Delete' onClick={handleDelete}>
+                                Delete
+                            </button>
+                        )}
+                        <button type='submit' className='Save'>
+                            {activeReminder ? 'Save' : 'Add'}
+                        </button>
                     </div>
                 </div>
             </form>

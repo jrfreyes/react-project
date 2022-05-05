@@ -45,8 +45,10 @@ export default function Login( {setToken, setUser, userDatabase} ) {
                 <label htmlFor="password"><b>Password</b></label><br/>
                 <input type="password" placeholder="Enter Password" 
                     name="password" id="password" required/>
+
                 {invalidUsername && <p className="Invalid">The username you entered is invalid.</p>}
                 {invalidPassword && <p className="Invalid">The password you entered is invalid.</p>}
+                
                 <button type="submit">LOG IN</button>
                 <label>
                     <span className="acc">Need an account? <Link to='/SignUp'>SIGN UP</Link></span>

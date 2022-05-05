@@ -41,18 +41,48 @@ export default function HealthData() {
         { currentPage.key === 'sleep' ?
         <YAxis reversed/> : <YAxis />
         }
-        {currentPage.key === 'bmi' && 
+        {currentPage.key === 'bmi' && (
         <React.Fragment>
-            <ReferenceLine y={18.5} stroke='pink' 
-                label={{value:'Underweight', position:'insideTopRight', style:{fill: '#88000088'}}} />
-            <ReferenceLine y={25} stroke='#88ff88' strokeDasharray={[3, 3]} 
-                label={{value:'Healthy', position: 'insideTopRight', style:{fill: '#00880088'}}} />
-            <ReferenceLine y={30} stroke='green' strokeDasharray={[3, 3]}
-                label={{value:'Overweight', position: 'insideTopRight', style:{fill: '#008800FF'}}} />
-            <ReferenceLine y={35} stroke='red' 
-                label={{value:'Obese', position:'insideTopRight', style:{fill: '#880000FF'}}} />
+            <ReferenceLine 
+                y={18.5} 
+                stroke='pink' 
+                label={{
+                    value:'Underweight', 
+                    position:'insideTopRight', 
+                    style:{fill: '#88000088'}
+                }} 
+            />
+            <ReferenceLine 
+                y={25} 
+                stroke='#88ff88' 
+                strokeDasharray={[3, 3]} 
+                label={{
+                    value:'Healthy', 
+                    position: 'insideTopRight', 
+                    style:{fill: '#00880088'}
+                }} 
+            />
+            <ReferenceLine 
+                y={30} 
+                stroke='green' 
+                strokeDasharray={[3, 3]}
+                label={{
+                    value:'Overweight', 
+                    position: 'insideTopRight', 
+                    style:{fill: '#008800FF'}
+                }} 
+            />
+            <ReferenceLine 
+                y={35} 
+                stroke='red' 
+                label={{
+                    value:'Obese', 
+                    position:'insideTopRight', 
+                    style:{fill: '#880000FF'}
+                }} 
+            />
         </React.Fragment>
-        }
+        )}
         <Tooltip formatter={currentPage.formatter}/>
     </LineChart>
     );
@@ -62,7 +92,11 @@ export default function HealthData() {
         <div className="HealthData">
             <div className="HealthDataOptions">
                 {Object.keys(pages).map((page) => (
-                    pages[page].title && <button key={page} onClick={() => switchPage(page)}>{pages[page].title}</button>
+                    pages[page].title && (
+                    <button key={page} onClick={() => switchPage(page)}>
+                        {pages[page].title}
+                    </button>
+                    )
                 ))}
                 <hr/>
                 <button onClick={() => switchPage('BMIcalc')}>Calculate BMI</button>

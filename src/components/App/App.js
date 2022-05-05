@@ -27,8 +27,25 @@ export default function App() {
         return (
             <Routes>
                 <Route path='/' element={<Home />} />
-                <Route path='/Login' element={<Login setToken={setToken} setUser={setUser} userDatabase={userDatabase}/>} />
-                <Route path='/SignUp' element={<SignUp userDatabase={userDatabase} setUserDatabase={setUserDatabase} />} />
+                <Route 
+                    path='/Login' 
+                    element={
+                        <Login 
+                            setToken={setToken} 
+                            setUser={setUser} 
+                            userDatabase={userDatabase}
+                        />
+                    } 
+                />
+                <Route 
+                    path='/SignUp' 
+                    element={
+                        <SignUp 
+                            userDatabase={userDatabase} 
+                            setUserDatabase={setUserDatabase} 
+                        />
+                    } 
+                />
                 <Route path='/*' element={<Navigate to='/' replace />} />
             </Routes>
         )
@@ -41,10 +58,14 @@ export default function App() {
                 <Route path='Recommendations' element={<Recommendations />}/>
                 <Route path='Statistics' element={<Statistics />} />
                 <Route path='PillIntake' element={<PillIntake />} />
+
                 <Route index element={<Navigate to='/HealthData' replace />} />
                 <Route path='*' element={<NoMatch />} />
             </Route>
-            <Route path='/LogOut' element={<LogOut setToken={setToken} setUser={setUser} />} />
+            <Route 
+                path='/LogOut' 
+                element={<LogOut setToken={setToken} setUser={setUser} />} 
+            />
         </Routes>
     )
 }
