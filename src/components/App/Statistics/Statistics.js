@@ -23,7 +23,7 @@ export default function Statistics() {
 
             <div className="StatisticsOptions">
                 {pages.map((page) => (
-                    <button onClick={() => switchPage(page)}>{page}</button>
+                    <button key={page} onClick={() => switchPage(page)}>{page}</button>
                 ))}
             </div>
             <div className="StatisticsContent">

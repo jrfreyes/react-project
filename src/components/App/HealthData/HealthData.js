@@ -3,6 +3,7 @@ import BMI from './BMI'
 import React, { useState } from 'react';
 import Input from './Input';
 
+// TODO Implement charts using sample data
 
 export default function HealthData() {
     const [currentPage, setCurrentPage] = useState("");
@@ -25,7 +26,7 @@ export default function HealthData() {
 
             <div className="HealthDataOptions">
                 {pages.map((page) => (
-                    <button onClick={() => switchPage(page)}>{page}</button>
+                    <button key={page} onClick={() => switchPage(page)}>{page}</button>
                 ))}
                 <hr/>
                 <button onClick={() => switchPage('BMI')}>Calculate BMI</button>
