@@ -38,9 +38,7 @@ export default function HealthData() {
         <Line type="monotone" dataKey={currentPage.data1} stroke="#d88488" 
             unit={currentPage.unit} name={currentPage.label1} />}
         <XAxis dataKey="name" />
-        { currentPage.key === 'sleep' ?
-        <YAxis reversed/> : <YAxis />
-        }
+        <YAxis reversed={currentPage.key === 'sleep'}/>
         {currentPage.key === 'bmi' && (
         <React.Fragment>
             <ReferenceLine 
@@ -98,7 +96,7 @@ export default function HealthData() {
                     </button>
                     )
                 ))}
-                <hr/>
+                <hr />
                 <button onClick={() => switchPage('BMIcalc')}>Calculate BMI</button>
                 <button onClick={() => switchPage('Input')}>Input Data</button>
             </div>
@@ -106,7 +104,7 @@ export default function HealthData() {
             { currentPage.key === 'BMIcalc' ?
             <BMI /> 
             : currentPage.key === 'Input' ?
-            <Input switchPage={switchPage}/>
+            <Input switchPage={switchPage} />
             : (
                 <center>
                     {renderLineChart}
