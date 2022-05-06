@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "title": "HEALTH ADVICE 1",
+        "imgUrl": "images/running.png",
+        "alt": "Person running on a wooden pathway on the beach with the sun near the horizon",
+        "text": "Try to combine cardiovascular exercise with a sedentary activity that you already do. " 
+    },
+    {
+        "id": 2,
+        "title": "HEALTH ADVICE 2",
+        "imgUrl": "images/sleep2.png",
+        "alt": "Woman sleeping on the bed with a white pillow and a white blanket",
+        "text": "Don't take naps after 3pm, and don't nap longer than 20 minutes." 
+    },
+    {
+        "id": 3,
+        "title": "HEALTH ADVICE 3",
+        "imgUrl": "images/eat2.png",
+        "alt": "Bowl of salad with various fruits and vegetables such as brocolli, tomatoes, purple cabbage, and avocados, drizzled with a creamy white dressing",
+        "text": "Choose foods with healthy fats, limit foods high in saturated fat, and avoid foods with trans fat." 
+    }
+]
