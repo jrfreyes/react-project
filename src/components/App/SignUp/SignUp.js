@@ -8,7 +8,6 @@ export default function SignUp( {userDatabase, setUserDatabase} ) {
     const [creationSuccess, setCreationSuccess] = useState(false)
     const navigate = useNavigate();
     const saltRounds = 10;
-    
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -38,6 +37,18 @@ export default function SignUp( {userDatabase, setUserDatabase} ) {
             setCreationSuccess(true)
         }
     }
+
+    // Redirect to Home after 3 seconds
+    useEffect(() => {
+        if (creationSuccess)
+        {
+            const interval = setInterval(() => navigate('/'), 3000)
+            return () => {
+                clearInterval(interval)
+            }
+        }
+    }, [creationSuccess])
+
     return (
         <div className="SignUp">
             <h2>SignUp</h2>
@@ -54,7 +65,11 @@ export default function SignUp( {userDatabase, setUserDatabase} ) {
                     name="password" id="password" required/>
 
                 
-                {usernameTaken && <p className="Invalid">The username you entered is already taken.</p>}    
+                {usernameTaken && (
+                    <p className="Invalid">
+                        The username you entered is already taken.
+                    </p>
+                )}    
                 <button type="submit">SIGN UP</button>
                 <label>
                     <span className="acc">Already a user? <Link to='/Login'>LOGIN</Link></span>
@@ -64,13 +79,13 @@ export default function SignUp( {userDatabase, setUserDatabase} ) {
                 
             </div>
             </form>
-            {creationSuccess &&
+            {creationSuccess && (
                 <div id="overlay" onClick={() => navigate('/')}>
                     <p className="OverlayContent OverlayText">
                         Your account has been created successfully.
                     </p>
                 </div>
-            }
+            )}
         </div>
     )
 }
