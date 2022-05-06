@@ -30,16 +30,7 @@ export default function HealthData() {
 
     const data = generateSampleData()
 
-    const renderLineChart = (
-    <LineChart width={600} height={400} data={data}>
-        <Line type="monotone" dataKey={currentPage.data0} stroke="#8884d8" 
-            unit={currentPage.unit} name={currentPage.label0} />
-        {currentPage.data1 && 
-        <Line type="monotone" dataKey={currentPage.data1} stroke="#d88488" 
-            unit={currentPage.unit} name={currentPage.label1} />}
-        <XAxis dataKey="name" />
-        <YAxis reversed={currentPage.key === 'sleep'}/>
-        {currentPage.key === 'bmi' && (
+    const referenceBmi = (
         <React.Fragment>
             <ReferenceLine 
                 y={18.5} 
@@ -80,7 +71,19 @@ export default function HealthData() {
                 }} 
             />
         </React.Fragment>
-        )}
+        )
+
+    const renderLineChart = (
+    <LineChart width={600} height={400} data={data}>
+
+        {currentPage.key === 'bmi' && referenceBmi}
+        <Line type="monotone" dataKey={currentPage.data0} stroke="#8884d8" 
+            unit={currentPage.unit} name={currentPage.label0} />
+        {currentPage.data1 && 
+        <Line type="monotone" dataKey={currentPage.data1} stroke="#d88488" 
+            unit={currentPage.unit} name={currentPage.label1} />}
+        <XAxis dataKey="name" />
+        <YAxis reversed={currentPage.key === 'sleep'}/>
         <Tooltip formatter={currentPage.formatter}/>
     </LineChart>
     );
@@ -108,7 +111,7 @@ export default function HealthData() {
             : (
                 <center>
                     {renderLineChart}
-                    <caption>{currentPage.title}</caption>
+                    <h2>{currentPage.title}</h2>
                 </center>
             )
             }
