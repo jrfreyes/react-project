@@ -64,11 +64,8 @@ export default function Statistics() {
     const [currentPage, setCurrentPage] = useState(pages["bmi"]);
     function switchPage(page) {
         setCurrentPage(pages[page])
-        console.log(currentPage)
     }
 
-    const yourData = generateSampleData(1, 'You')
-    console.log(generateSampleData(1, 'You'))
     const renderLineChart = (
         <BarChart width={600} height={400} data={data} maxBarSize={150}>
             <Tooltip formatter={currentPage.formatter} />
