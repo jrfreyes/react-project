@@ -8,7 +8,6 @@ export default function SignUp( {userDatabase, setUserDatabase} ) {
     const [creationSuccess, setCreationSuccess] = useState(false)
     const navigate = useNavigate();
     const saltRounds = 10;
-    
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -38,6 +37,18 @@ export default function SignUp( {userDatabase, setUserDatabase} ) {
             setCreationSuccess(true)
         }
     }
+
+    // Redirect to Home after 3 seconds
+    useEffect(() => {
+        if (creationSuccess)
+        {
+            const interval = setInterval(() => navigate('/'), 3000)
+            return () => {
+                clearInterval(interval)
+            }
+        }
+    }, [creationSuccess])
+
     return (
         <div className="SignUp">
             <h2>SignUp</h2>
