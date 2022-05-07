@@ -25,14 +25,16 @@ export default function useToken({setUser}) {
         const tokenString = localStorage.getItem('token');
         try {
             const userToken = JSON.parse(tokenString);
-            verifyToken(userToken?.token)
-                .then(setUser)
-                .catch((error) => {
-                    console.log(error.message);
-                    localStorage.removeItem('token');
-                    setUser();
-                    return;
-                })
+            if (userToken){
+                verifyToken(userToken.token)
+                    .then(setUser)
+                    .catch((error) => {
+                        console.log(error.message);
+                        localStorage.removeItem('token');
+                        setUser();
+                        return;
+                    })
+                }
             return userToken?.token;
         } catch (error) {
             if (error.name === "SyntaxError") {

@@ -6,7 +6,7 @@ import Recommendations from './Recommendations';
 import PillIntake from './PillIntake';
 import SignUp from './SignUp/SignUp';
 import useToken from './useToken';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
     Routes,
     Route,
@@ -27,14 +27,8 @@ export default function App() {
     const handleLogout = () => {
         console.log('Logging out')
         setToken();
-        setUser();
     }
 
-    useEffect(() => {
-        if (!token) {
-            setUser();
-        }
-    }, [token, setUser])
 
     if (!token) {
         return (
