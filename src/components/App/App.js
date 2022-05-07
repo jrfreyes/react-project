@@ -6,7 +6,7 @@ import Recommendations from './Recommendations';
 import PillIntake from './PillIntake';
 import SignUp from './SignUp/SignUp';
 import useToken from './useToken';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { 
     Routes,
     Route,
@@ -18,10 +18,36 @@ import LogOut  from './LogOut';
 import Contents from './Contents';
 import Home from './Home';
 
+async function verifyToken(token) {
+    fetch('/.netlify/functions/login', {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({token: token})
+    })
+        .then(data => data.json)
+        .catch((error) => {
+            console.log('log client error: ' + error);
+            throw new Error("Token was invalid");
+    })
+}
+
 export default function App() {
     const {token, setToken} = useToken();
     const {user, setUser} = useUser();
     const {userDatabase, setUserDatabase} = useUserDatabase();
+
+    useEffect(() => {
+        try {
+            setUser(await verifyToken(token))
+        } catch(error) {
+            console.log(error);
+        }
+        return () => {
+            setUser();
+        }
+    }, [token, user])
 
     if(!token) {
         return (

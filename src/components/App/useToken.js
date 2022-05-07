@@ -16,7 +16,7 @@ export default function useToken() {
         }
         else {
             localStorage.removeItem('token');
-            setToken(getToken());
+            setToken();
         }
     }
     

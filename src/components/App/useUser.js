@@ -16,7 +16,7 @@ export default function useUser() {
         }
         else {
             localStorage.removeItem('user');
-            setUser(getUser());
+            setUser();
         }
     }
     

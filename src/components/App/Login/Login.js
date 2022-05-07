@@ -4,7 +4,20 @@ import PropTypes from 'prop-types';
 import './Login.css'
 import bcrypt from 'bcryptjs'
 
-// TODO Implement actual login with credential checking
+async function loginUser(credentials) {
+    return fetch('/.netlify/functions/login', {
+        method: "POST",
+        headers: {
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    })
+        .then(data => data.json)
+        .catch((error) => {
+            console.log('log client error: ' + error);
+            throw new Error("Login failed");
+        })
+}
 
 export default function Login( {setToken, setUser, userDatabase} ) {
     const [invalidUsername, setInvalidUsername] = useState(false);
@@ -19,7 +32,12 @@ export default function Login( {setToken, setUser, userDatabase} ) {
         const {username, password} = Object.fromEntries(formData.entries())
         if (username in userDatabase){
             if (bcrypt.compareSync(password, userDatabase[username].passwordHash)) {
-                setToken({token: 'Hello'}); // Token should be taken from a server ideally
+                try {
+                    setToken(await loginUser({username, password})); 
+                } catch (error) {
+                    console.log(error);
+                    setToken();
+                } 
                 setUser({user: username});
                 navigate('/');
             }
