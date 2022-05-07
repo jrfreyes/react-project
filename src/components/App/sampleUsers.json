@@ -2,5 +2,9 @@
     "user01": {
         "username": "user01",
         "passwordHash": "$2a$10$hbpJ6lftUVrG6I/xz.OAMuFvbo8CxWOT8FN5rijYuCcoRDH72olf6"
+    },
+    "JohnDoe": {
+        "username": "JohnDoe",
+        "passwordHash": "$2a$10$ikfG64pLh7xAu3PjgPJyU.7/FZ2Qmyn.d2eq5qxZ5Sn392II0EpXO"
     }
 }

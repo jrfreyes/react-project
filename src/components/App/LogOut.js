@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Navigate } from 'react-router-dom';
 
-export default function LogOut({ setToken, setUser }) {
-    setToken('');
-    setUser('');
+export default function LogOut({ onLogout }) {
+    useEffect(onLogout, [onLogout])
     return <Navigate to='/' />;
 }
+
 LogOut.propTypes = {
-    setToken: PropTypes.func.isRequired,
-    setUser: PropTypes.func.isRequired
+    onLogout: PropTypes.func.isRequired,
 };
