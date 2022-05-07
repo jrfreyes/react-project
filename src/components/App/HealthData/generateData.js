@@ -74,8 +74,7 @@ export function formatTime(value, name, props) {
     const hour = Math.floor(value);
     const min = Math.floor((value % 1)*60);
     const meridian = hour < 12 ? 'AM' : 'PM';
-    let hour12 = (hour % 12);
-    hour12 = hour12 || 12;
+    let hour12 = (hour % 12) || 12;
 
-    return `${hour}:${min.toString().padStart(2,'0')}${meridian}`;
+    return `${hour12}:${min.toString().padStart(2,'0')}${meridian}`;
 }

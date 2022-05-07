@@ -3,7 +3,7 @@ import BMI from './BMI'
 import React, { useState } from 'react';
 import Input from './Input';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ReferenceLine, ResponsiveContainer } from 'recharts';
-import generateData, { formatTime, generateSampleData } from './generateData';
+import { formatTime, generateSampleData } from './generateData';
 
 
 // TODO Implement charts using sample data

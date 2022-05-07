@@ -1,6 +1,6 @@
 import './Statistics.css'
 import React, { useState } from 'react';
-import { generateSampleData, formatTime, calculateBmi, calculateLeanBodyMass } from '../HealthData/generateData'
+import { generateSampleData, calculateBmi, calculateLeanBodyMass } from '../HealthData/generateData'
 import { 
     Cell,
     ResponsiveContainer, 
