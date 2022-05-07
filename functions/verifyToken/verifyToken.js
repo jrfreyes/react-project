@@ -3,9 +3,9 @@ import jwt from "jsonwebtoken"
 const secret = 'ThisIsASecret'
 
 export async function handler(event, context) {
-    const {token} = JSON.parse(event.body);
-    console.log(`Verifying token: ${token}`)
     try {
+        const {token} = JSON.parse(event.body);
+        console.log(`Verifying token: ${token}`)
         const {username} = jwt.verify(token, secret);
         console.log(`Token successfully verified. username: ${username}`)
         return {
