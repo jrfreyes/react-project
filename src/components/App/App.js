@@ -6,7 +6,7 @@ import Recommendations from './Recommendations';
 import PillIntake from './PillIntake';
 import SignUp from './SignUp/SignUp';
 import useToken from './useToken';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Routes,
     Route,
@@ -18,36 +18,23 @@ import LogOut from './LogOut';
 import Contents from './Contents';
 import Home from './Home';
 
-async function verifyToken(token) {
-    fetch('/.netlify/functions/login', {
-        method: "POST",
-        headers: {
-            "Content-Type": 'application/json'
-        },
-        body: JSON.stringify({ token: token })
-    })
-        .then(data => data.json)
-        .catch((error) => {
-            console.log('log client error: ' + error);
-            throw new Error("Token was invalid");
-        })
-}
 
 export default function App() {
-    const { token, setToken } = useToken();
     const { user, setUser } = useUser();
+    const { token, setToken } = useToken({setUser});
     const { userDatabase, setUserDatabase } = useUserDatabase();
 
+    const handleLogout = () => {
+        console.log('Logging out')
+        setToken();
+        setUser();
+    }
+
     useEffect(() => {
-        verifyToken(token)
-            .then(setUser)
-            .catch((error) => {
-                console.log(error);
-            })
-        return () => {
+        if (!token) {
             setUser();
-        };
-    }, [token, user, setUser])
+        }
+    }, [token, setUser])
 
     if (!token) {
         return (
@@ -75,25 +62,25 @@ export default function App() {
                 <Route path='/*' element={<Navigate to='/' replace />} />
             </Routes>
         )
+    } else {
+        return (
+            <Routes>
+                <Route path='/' element={<Contents user={user} />}>
+                    <Route path='HealthData' element={<HealthData />} />
+                    <Route path='Recommendations' element={<Recommendations />} />
+                    <Route path='Statistics' element={<Statistics />} />
+                    <Route path='PillIntake' element={<PillIntake />} />
+
+                    <Route index element={<Navigate to='/HealthData' replace />} />
+                    <Route path='*' element={<NoMatch />} />
+                </Route>
+                <Route
+                    path='/LogOut'
+                    element={<LogOut onLogout={handleLogout} />}
+                />
+            </Routes>
+        )
     }
-
-    return (
-        <Routes>
-            <Route path='/' element={<Contents user={user} />}>
-                <Route path='HealthData' element={<HealthData />} />
-                <Route path='Recommendations' element={<Recommendations />} />
-                <Route path='Statistics' element={<Statistics />} />
-                <Route path='PillIntake' element={<PillIntake />} />
-
-                <Route index element={<Navigate to='/HealthData' replace />} />
-                <Route path='*' element={<NoMatch />} />
-            </Route>
-            <Route
-                path='/LogOut'
-                element={<LogOut setToken={setToken} setUser={setUser} />}
-            />
-        </Routes>
-    )
 }
 
 function NoMatch() {

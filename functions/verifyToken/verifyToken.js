@@ -4,8 +4,10 @@ const secret = 'ThisIsASecret'
 
 export async function handler(event, context) {
     const {token} = JSON.parse(event.body);
+    console.log(`Verifying token: ${token}`)
     try {
         const {username} = jwt.verify(token, secret);
+        console.log(`Token successfully verified. username: ${username}`)
         return {
             statusCode: 200,
             headers: {
@@ -15,12 +17,10 @@ export async function handler(event, context) {
         }
 
     } catch(err) {
+        console.log("Token was invalid")
         return {
             statusCode: 401,
-            headers: {
-                "WWW-Authenticate": 'Basic realm="health-monitoring"'
-            },
-            body: {error: "Invalid Token"}
+            body: JSON.stringify({error: "Invalid Token"})
         }
     }
 }

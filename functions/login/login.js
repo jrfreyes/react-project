@@ -7,15 +7,22 @@ export async function handler(event, context) {
     
     if (username) {
         console.log(`Providing token to user: ${username}`)
+        let token
+        try {
+            token = jwt.sign({
+                username: username
+            }, secret, { expiresIn: '1h' })
+        } catch (error) {
+            console.log(error)
+        }
+        console.log(`Token: ${token}`)
         return {
             statusCode: 200,
             headers: {
                 "Content-Type": 'application/json'
             },
             body: JSON.stringify({ 
-                token: jwt.sign({
-                    username: username
-                }, secret, { expiresIn: '1h', algorithm: 'RS256' }) 
+                token: token
             })
         }
     } else {
@@ -23,7 +30,7 @@ export async function handler(event, context) {
             statusCode: 401,
             headers: {
                 "Content-Type": 'application/json',
-                "WWW-Authenticate": 'Basic realm="health-monitoring"'
+                "WWW-Authenticate": 'Basic'
             },
             body: JSON.stringify({error: "Request must contain username"})
         }

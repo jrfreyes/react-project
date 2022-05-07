@@ -12,7 +12,7 @@ async function loginUser(credentials) {
         },
         body: JSON.stringify(credentials)
     })
-        .then(data => data.json)
+        .then(data => data.json())
         .catch((error) => {
             console.log('log client error: ' + error);
             throw new Error("Login failed");
