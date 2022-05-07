@@ -6,7 +6,8 @@ import sampleRecommendations from './sampleRecommendations.json'
 
 export default function Recommendations() {
     const [adviceNumber, setAdviceNumber] = useState(1);
-    const [advices, setAdvices] = useState(sampleRecommendations);
+    // const [advices, setAdvices] = useState(sampleRecommendations);
+    const advices = sampleRecommendations;
     const [currentAdvice, setCurrentAdvice] = useState(advices[adviceNumber - 1])
     const [waiting, setWaiting] = useState(false);
 
@@ -53,7 +54,7 @@ export default function Recommendations() {
 
     useEffect(() => {
         setCurrentAdvice(advices[adviceNumber - 1]);
-    }, [adviceNumber])
+    }, [adviceNumber, advices])
 
     useEffect(() => {
         const interval = setInterval(() => traverseSlides(1), 5000)
@@ -77,8 +78,8 @@ export default function Recommendations() {
                     />
                 ))}
 
-                <a className="prev" onClick={() => traverseSlides(-1)}>❮</a>
-                <a className="next" onClick={() => traverseSlides(1)}>❯</a>
+                <button className="prev" onClick={() => traverseSlides(-1)}>❮</button>
+                <button className="next" onClick={() => traverseSlides(1)}>❯</button>
 
             </div>
             <br />

@@ -47,7 +47,7 @@ export default function SignUp( {userDatabase, setUserDatabase} ) {
                 clearInterval(interval)
             }
         }
-    }, [creationSuccess])
+    }, [creationSuccess, navigate])
 
     return (
         <div className="SignUp">

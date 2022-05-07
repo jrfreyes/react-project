@@ -10,8 +10,6 @@ export default function Login( {setToken, setUser, userDatabase} ) {
     const [invalidUsername, setInvalidUsername] = useState(false);
     const [invalidPassword, setInvalidPassword] = useState(false);
     const navigate = useNavigate();
-    
-    const saltRounds = 10;
 
     async function handleSubmit(e) {
         e.preventDefault();
