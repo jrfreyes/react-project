@@ -6,6 +6,7 @@
 .PillSideBar {
     border: 2px solid lightgrey;
     width: 25%;
+    min-width: 180px;
     display: block;
     padding: 10px;
     padding-right: 15px;
@@ -15,6 +16,7 @@
     overflow-y: auto;
     border: 2px solid lightgrey;
     width: 75%;
+    min-width: 260px;
     max-height: 600px;
 }
 

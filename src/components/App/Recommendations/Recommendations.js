@@ -68,11 +68,21 @@ export default function Recommendations() {
         <div className="Recommendations">
             <div className="slideshow-container">
             
-            <AdviceSlide
+            {/* <AdviceSlide
                 advice={currentAdvice}
                 number={adviceNumber}
                 total={advices.length}
-            />
+            /> */}
+
+            {advices.map((a, i) => (
+                <AdviceSlide
+                    key={i}
+                    advice={a}
+                    number={i+1}
+                    total={advices.length}
+                    active={a === currentAdvice}
+                />
+            ))}
 
             <a className="prev" onClick={() => traverseSlides(-1)}>❮</a>
             <a className="next" onClick={() => traverseSlides(1)}>❯</a>

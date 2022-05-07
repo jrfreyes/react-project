@@ -2,7 +2,7 @@ import './HealthData.css'
 import BMI from './BMI'
 import React, { useState } from 'react';
 import Input from './Input';
-import { LineChart, Line, XAxis, YAxis, Tooltip, ReferenceLine } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ReferenceLine, ResponsiveContainer } from 'recharts';
 import generateData, { formatTime, generateSampleData } from './generateData';
 
 
@@ -25,7 +25,6 @@ export default function HealthData() {
     const [currentPage, setCurrentPage] = useState(pages['bmi']);
     const switchPage = (page) => {
         setCurrentPage(pages[page])
-        console.log(currentPage)
     }
 
     const data = generateSampleData()
@@ -74,7 +73,7 @@ export default function HealthData() {
         )
 
     const renderLineChart = (
-    <LineChart width={600} height={400} data={data}>
+    <LineChart data={data}>
 
         {currentPage.key === 'bmi' && referenceBmi}
         <Line type="monotone" dataKey={currentPage.data0} stroke="#8884d8" 
@@ -110,7 +109,9 @@ export default function HealthData() {
             <Input switchPage={switchPage} />
             : (
                 <center>
-                    {renderLineChart}
+                    <ResponsiveContainer width={'80%'} aspect={1.618}>
+                        {renderLineChart}
+                    </ResponsiveContainer>
                     <h2>{currentPage.title}</h2>
                 </center>
             )
