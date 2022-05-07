@@ -32,14 +32,17 @@ export default function Login( {setToken, setUser, userDatabase} ) {
         const {username, password} = Object.fromEntries(formData.entries())
         if (username in userDatabase){
             if (bcrypt.compareSync(password, userDatabase[username].passwordHash)) {
-                try {
-                    setToken(await loginUser({username, password})); 
-                } catch (error) {
-                    console.log(error);
-                    setToken();
-                } 
-                setUser({user: username});
-                navigate('/');
+                loginUser({username, password})
+                    .then((data) => {
+                        setToken(data);
+                        setUser({user: username});
+                        navigate('/');
+                    })
+                    .catch ((error) => {
+                        console.log(error);
+                        setToken();
+                        setUser();
+                    })
             }
             else setInvalidPassword(true)
         }
