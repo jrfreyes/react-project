@@ -67,17 +67,17 @@ export default function Statistics() {
     }
 
     const renderLineChart = (
-        <BarChart width={600} height={400} data={data} maxBarSize={150}>
+        <BarChart data={data} maxBarSize={150}>
             <Tooltip formatter={currentPage.formatter} />
             <Bar dataKey={currentPage.data0} unit={currentPage.unit} name={currentPage.label0} label={{position: 'top'}}>
                 {data.map((entry) => (
-                    <Cell fill={entry.name === 'You' ? "#8884d8": "#8884d899"} />
+                    <Cell key={currentPage.key + '0'} fill={entry.name === 'You' ? "#8884d8": "#8884d899"} />
                 ))}
             </Bar>
             {currentPage.data1 && (
                 <Bar dataKey={currentPage.data1} unit={currentPage.unit} name={currentPage.label1} label={{position: 'top'}}>
                     {data.map((entry) => (
-                        <Cell fill={entry.name === 'You' ? "#ff84d8": "#ff84d899"} />
+                        <Cell key={currentPage.key + '1'} fill={entry.name === 'You' ? "#ff84d8": "#ff84d899"} />
                     ))}
                 </Bar>
             )}
@@ -103,7 +103,9 @@ export default function Statistics() {
             <div className="StatisticsContent">
                      
                 <center>
-                    {renderLineChart}
+                    <ResponsiveContainer width={'80%'} aspect={1.618}>
+                        {renderLineChart}
+                    </ResponsiveContainer>
                     <h2>{currentPage.title}</h2>
                 </center>
             
