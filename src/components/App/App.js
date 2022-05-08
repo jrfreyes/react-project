@@ -6,7 +6,7 @@ import Recommendations from './Recommendations';
 import PillIntake from './PillIntake';
 import SignUp from './SignUp/SignUp';
 import useToken from './useToken';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Routes,
     Route,
@@ -21,7 +21,8 @@ import Home from './Home';
 
 export default function App() {
     const { user, setUser } = useUser();
-    const { token, setToken } = useToken({setUser});
+    const [ verifying, setVerifying ] = useState(true);
+    const { token, setToken } = useToken({ verifying, setUser, setVerifying });
     const { userDatabase, setUserDatabase } = useUserDatabase();
 
     const handleLogout = () => {
@@ -29,52 +30,52 @@ export default function App() {
         setToken();
     }
 
+    return (
+        <Routes>
+            {!token ? (
+                <>
+                    <Route path='/' element={<Home />} />
+                    <Route
+                        path='/Login'
+                        element={
+                            <Login
+                                setToken={setToken}
+                                setUser={setUser}
+                                userDatabase={userDatabase}
+                            />
+                        }
+                    />
+                    <Route
+                        path='/SignUp'
+                        element={
+                            <SignUp
+                                userDatabase={userDatabase}
+                                setUserDatabase={setUserDatabase}
+                            />
+                        }
+                    />
+                    <Route path='/*' element={<Navigate to='/' replace />} />
+                </>
 
-    if (!token) {
-        return (
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route
-                    path='/Login'
-                    element={
-                        <Login
-                            setToken={setToken}
-                            setUser={setUser}
-                            userDatabase={userDatabase}
-                        />
-                    }
-                />
-                <Route
-                    path='/SignUp'
-                    element={
-                        <SignUp
-                            userDatabase={userDatabase}
-                            setUserDatabase={setUserDatabase}
-                        />
-                    }
-                />
-                <Route path='/*' element={<Navigate to='/' replace />} />
-            </Routes>
-        )
-    } else {
-        return (
-            <Routes>
-                <Route path='/' element={<Contents user={user} />}>
-                    <Route path='HealthData' element={<HealthData />} />
-                    <Route path='Recommendations' element={<Recommendations />} />
-                    <Route path='Statistics' element={<Statistics />} />
-                    <Route path='PillIntake' element={<PillIntake />} />
+            ) : (
+                <>
+                    <Route path='/' element={<Contents user={user} verifying={verifying}/>}>
+                        <Route path='HealthData' element={<HealthData />} />
+                        <Route path='Recommendations' element={<Recommendations />} />
+                        <Route path='Statistics' element={<Statistics />} />
+                        <Route path='PillIntake' element={<PillIntake />} />
 
-                    <Route index element={<Navigate to='/HealthData' replace />} />
-                    <Route path='*' element={<NoMatch />} />
-                </Route>
-                <Route
-                    path='/LogOut'
-                    element={<LogOut onLogout={handleLogout} />}
-                />
-            </Routes>
-        )
-    }
+                        <Route index element={<Navigate to='/HealthData' replace />} />
+                        <Route path='*' element={<NoMatch />} />
+                    </Route>
+                    <Route
+                        path='/LogOut'
+                        element={<LogOut onLogout={handleLogout} />}
+                    />
+                </>
+            )}
+        </Routes>
+    );
 }
 
 function NoMatch() {
