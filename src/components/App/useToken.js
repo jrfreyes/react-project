@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 async function verifyToken(token) {
     return fetch('/.netlify/functions/verifyToken', {
@@ -15,39 +15,48 @@ async function verifyToken(token) {
                 throw (new Error(response.json().error))
         })
         .catch((error) => {
-            console.log('log client error: ' + error.message);
             throw new Error("Token was invalid");
         })
 }
 
-export default function useToken({setUser}) {
-    const getToken = () => {
+export default function useToken({ verifying, setUser, setVerifying }) {
+    let userToken;
+
+    function getToken() {
         const tokenString = localStorage.getItem('token');
+
         try {
-            const userToken = JSON.parse(tokenString);
-            if (userToken){
-                verifyToken(userToken.token)
-                    .then(setUser)
-                    .catch((error) => {
-                        console.log(error.message);
-                        localStorage.removeItem('token');
-                        setUser();
-                        return;
-                    })
-                }
-            return userToken?.token;
+            userToken = JSON.parse(tokenString);
         } catch (error) {
             if (error.name === "SyntaxError") {
-                console.log('Invalid format of token in localStorage')
                 localStorage.removeItem('token')
-                return
+                setUser();
             } else {
                 throw (error);
             }
         }
+
+        return userToken?.token;
     }
 
     const [token, setToken] = useState(getToken());
+
+
+    useEffect(() => {
+        async function verify() {
+            await verifyToken(token)
+                .then(setUser)
+                .catch(() => {
+                    localStorage.removeItem('token');
+                    setUser();
+                    setToken();;
+                })
+            setVerifying(false);
+        }
+        if (token) {
+            verify();
+        }
+    }, [token, setUser, setVerifying])
 
     const saveToken = userToken => {
         if (userToken) {
