@@ -11,7 +11,10 @@ A personal health monitoring system that is easy to use and gives a holistic vie
 ## Screenshots
 
 ![Home](docs/screenshots/1.png)
-![Recommendations](docs/screenshots/2.png)
 ![Health Data](docs/screenshots/3.png)
-![Pill Intake](docs/screenshots/4.png)
-![Input Data](docs/screenshots/5.png)
+![Input Data](docs/screenshots/4.png)
+![Recommendations](docs/screenshots/2.png)
+![Statistics](docs/screenshots/5.png)
+![Pill Intake](docs/screenshots/6.png)
+![Add Reminder](docs/screenshots/7.png)
+![Edit Reminder](docs/screenshots/8.png)
