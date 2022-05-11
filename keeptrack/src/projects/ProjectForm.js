@@ -1,11 +1,11 @@
 import { Project } from "./Project";
 import PropTypes, { number } from "prop-types";
 import { useState } from "react";
-import { getAllByAltText } from "@testing-library/react";
+import { useDispatch } from "react-redux";
+import { saveProject } from "./state/projectActions";
 
 export default function ProjectForm({
         project: initialProject, 
-        onSave, 
         onCancel
 }) {
     const [project, setProject] = useState(initialProject)
@@ -14,6 +14,13 @@ export default function ProjectForm({
         description: '',
         budget: '',
     })
+    const dispatch = useDispatch();
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (isValid()) {
+            dispatch(saveProject(project));
+        }
+    }
 
     const handleChange = (event) => {
         const {type, name, value, checked} = event.target;
@@ -68,13 +75,7 @@ export default function ProjectForm({
             errors.budget.length === 0 
         )
     }
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (isValid()) {
-            onSave(project);
-        }
-    }
-
+    
     return (
         <form 
             className="input-group vertical"
@@ -145,6 +146,5 @@ export default function ProjectForm({
 
 ProjectForm.propTypes = {
     project: PropTypes.instanceOf(Project),
-    onSave: PropTypes.func.isRequired,
-    onCancel: PropTypes.func.isRequired
+    onCancel: PropTypes.func.isRequired,
 }
